@@ -70,4 +70,14 @@ public class Comment {
       return comment;
     }
   }
+
+  public static List<Comment> allFromBar(int barId) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM comments WHERE bar_id = :id";
+      return con.createQuery(sql)
+      .addParameter("id", barId)
+      .addColumnMapping("bar_id", "barID")
+      .executeAndFetch(Comment.class);
+    }
+  }
 }

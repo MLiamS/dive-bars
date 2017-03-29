@@ -55,6 +55,12 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-
+    get("/bars/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Bar bar = Bar.find(Integer.parseInt(request.params(":id")));
+      model.put("bar", bar);
+      model.put("template", "templates/bar.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }

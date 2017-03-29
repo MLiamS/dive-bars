@@ -4,7 +4,7 @@
 #if ($bars)
   <ul>
     #foreach ($bar in $bars)
-      <li>$bar.getName()</li>
+      <li><a href="/bars/$bar.getId()">$bar.getName()</a></li>
     #end
   </ul>
 #end

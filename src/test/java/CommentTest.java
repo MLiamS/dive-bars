@@ -46,4 +46,14 @@ public class CommentTest {
     comment2.save();
     assertEquals(comment2, Comment.find(comment2.getId()));
   }
+
+  @Test
+  public void allFromBar_returnsAllCommentsFromBarByBarId_comment2() {
+    Comment comment1 = new Comment("Wow, it's cool.", "Bub", 1);
+    comment1.save();
+    Comment comment2 = new Comment("Wow, it's great.", "Ry", 2);
+    comment2.save();
+    assertTrue(Comment.allFromBar(2).contains(comment2));
+    assertFalse(Comment.allFromBar(2).contains(comment1));
+  }
 }
