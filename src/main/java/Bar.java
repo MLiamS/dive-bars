@@ -56,15 +56,15 @@ public class Bar {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO bars (name, description, happy_hour, closing_time, has_music, has_pool, has_fryer) VALUES (:name, :description, :hh, :ct, :hm, :hp, :hf)";
+      String sql = "INSERT INTO bars (name, description, happy_hour, closing_time, has_music, has_pool, has_fryer) VALUES (:name, :description, :happy_hour, :closing_time, :has_music, :has_pool, :has_fryer)";
       this.id = (int) con.createQuery(sql, true)
       .addParameter("name", this.name)
       .addParameter("description", this.description)
-      .addParameter("hh", this.happyHour)
-      .addParameter("ct", this.closingTime)
-      .addParameter("hm", this.hasMusic)
-      .addParameter("hp", this.hasPool)
-      .addParameter("hf", this.hasFryer)
+      .addParameter("happy_hour", this.happyHour)
+      .addParameter("closing_time", this.closingTime)
+      .addParameter("has_music", this.hasMusic)
+      .addParameter("has_pool", this.hasPool)
+      .addParameter("has_fryer", this.hasFryer)
       .executeUpdate()
       .getKey();
     }
