@@ -1,5 +1,6 @@
 import org.sql2o.*;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Bar {
   private int id;
@@ -106,5 +107,23 @@ public class Bar {
         .executeAndFetchFirst(Bar.class);
       return bar;
     }
+  }
+
+  public static ArrayList<Bar> search(String searchString) { //take in name
+    String[] searchWords = searchString.split(" ");
+    ArrayList<Bar> bars = new ArrayList<Bar>();
+    for(Bar bar : Bar.all()) {
+      System.out.println("Checked bar: " + bar.getName());
+      String[] barWords = bar.getName().split(" ");
+      for (String sWord : searchWords) {
+        for (String bWord : barWords) {
+          if (sWord.toLowerCase().equals(bWord.toLowerCase())) {
+            bars.add(bar);
+            System.out.println("Added bar: " + bar.getName());
+          }
+        }
+      }
+    }
+    return bars;
   }
 }

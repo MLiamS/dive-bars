@@ -1,0 +1,8 @@
+textarea {
+  resize: none;
+}
+
+.nav li {
+  float: left;
+  margin-right: 20px;
+}

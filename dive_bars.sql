@@ -122,6 +122,8 @@ ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq':
 --
 
 COPY bars (id, name, description, happy_hour, closing_time, has_music, has_pool, has_fryer) FROM stdin;
+4	A&L	Dank bar in SE	4pm - 5pm	2am	f	t	t
+5	Biddy's	Irish pub	5pm - 9pm	2am	t	f	t
 \.
 
 
@@ -129,7 +131,7 @@ COPY bars (id, name, description, happy_hour, closing_time, has_music, has_pool,
 -- Name: bars_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('bars_id_seq', 3, true);
+SELECT pg_catalog.setval('bars_id_seq', 5, true);
 
 
 --

@@ -11,3 +11,12 @@ Happy Hour from $bar.getHappyHour()<br>
 #if ($bar.getHasFryer())
   Fried Food!<br>
 #end
+
+<a href="/bars/$bar.getId()/comments/new">ADD COMMENT</a>
+#if ($comments)
+  <ul>
+    #foreach ($comment in $comments)
+      <li>"$comment.getComment()"<br>-$comment.getCommenter()</li>
+    #end
+  </ul>
+#end

@@ -10,6 +10,22 @@
   <body>
     <!-- begin inner template-->
     <div class="container">
+
+      <div class="jumbotron">
+        <h1>Search Bar</h1>
+        <p>A dive bar compendium</p>
+        <ul class="nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/bars/new">Add a Bar</a></li>
+          <li>
+            <form action="/search" method="post">
+              <input type="text" name="search" id="search" value="$query" required>
+              <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+
       #parse( $template )
     </div>
     <!-- end inner template-->

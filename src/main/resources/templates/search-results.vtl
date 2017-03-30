@@ -1,0 +1,10 @@
+<h1>Search results for "$query"</h1>
+#if ($bars.size() == 0)
+  <h2>Your search returned no results.</h2>
+#else
+  <ul>
+    #foreach ($bar in $bars)
+    <li><a href="/bars/$bar.getId()">$bar.getName()</a></li>
+    #end
+  </ul>
+#end
