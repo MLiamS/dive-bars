@@ -101,5 +101,23 @@ public class App {
       model.put("template", "templates/search-results.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    get("/bars/:id/votes/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("bar", Bar.find(Integer.parseInt(request.params("id"))));
+      model.put("template", "templates/bar-vote-form.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/bars/:id/votes", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      int barId = Integer.parseInt(request.params("id"));
+      Vote newVote = new Vote(Integer.parseInt(request.queryParams("rating")), barId);
+      newVote.save();
+      model.put("bar", Bar.find(barId));
+      model.put("average_rating", Vote.averageRating(barId));
+      model.put("template", "templates/bar.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }

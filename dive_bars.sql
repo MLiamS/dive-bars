@@ -104,6 +104,40 @@ ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
 
 
 --
+-- Name: votes; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
+--
+
+CREATE TABLE votes (
+    id integer NOT NULL,
+    rating integer,
+    bar_id integer
+);
+
+
+ALTER TABLE votes OWNER TO "Guest";
+
+--
+-- Name: votes_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
+--
+
+CREATE SEQUENCE votes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE votes_id_seq OWNER TO "Guest";
+
+--
+-- Name: votes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
+--
+
+ALTER SEQUENCE votes_id_seq OWNED BY votes.id;
+
+
+--
 -- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
 --
 
@@ -118,12 +152,17 @@ ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq':
 
 
 --
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
+--
+
+ALTER TABLE ONLY votes ALTER COLUMN id SET DEFAULT nextval('votes_id_seq'::regclass);
+
+
+--
 -- Data for Name: bars; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
 COPY bars (id, name, description, happy_hour, closing_time, has_music, has_pool, has_fryer) FROM stdin;
-4	A&L	Dank bar in SE	4pm - 5pm	2am	f	t	t
-5	Biddy's	Irish pub	5pm - 9pm	2am	t	f	t
 \.
 
 
@@ -131,7 +170,7 @@ COPY bars (id, name, description, happy_hour, closing_time, has_music, has_pool,
 -- Name: bars_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('bars_id_seq', 5, true);
+SELECT pg_catalog.setval('bars_id_seq', 1, false);
 
 
 --
@@ -150,6 +189,21 @@ SELECT pg_catalog.setval('comments_id_seq', 1, false);
 
 
 --
+-- Data for Name: votes; Type: TABLE DATA; Schema: public; Owner: Guest
+--
+
+COPY votes (id, rating, bar_id) FROM stdin;
+\.
+
+
+--
+-- Name: votes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
+--
+
+SELECT pg_catalog.setval('votes_id_seq', 1, false);
+
+
+--
 -- Name: bars_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
 --
 
@@ -163,6 +217,14 @@ ALTER TABLE ONLY bars
 
 ALTER TABLE ONLY comments
     ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: votes_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
+--
+
+ALTER TABLE ONLY votes
+    ADD CONSTRAINT votes_pkey PRIMARY KEY (id);
 
 
 --

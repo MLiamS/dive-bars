@@ -11,7 +11,8 @@ Happy Hour from $bar.getHappyHour()<br>
 #if ($bar.getHasFryer())
   Fried Food!<br>
 #end
-
+<h3>Average Rating: $average_rating Beers</h3>
+<a href="/bars/$bar.getId()/votes/new">RATE BAR</a>
 <a href="/bars/$bar.getId()/comments/new">ADD COMMENT</a>
 #if ($comments)
   <ul>

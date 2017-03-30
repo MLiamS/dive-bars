@@ -1,0 +1,4 @@
+numberOfVotes    average   newVote
+    10             4          5
+
+newAverage = (numberOfVotes * average + newVote) / (numberOfVotes + 1)
